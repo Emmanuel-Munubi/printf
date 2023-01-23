@@ -1,4 +1,4 @@
 # printf
 Authors:
-[-] Emmanuel Munubi
-[-] Belem Belem Gloire
+- Emmanuel Munubi
+- Belem Belem Gloire
