@@ -8,22 +8,29 @@
  */
 
 #include <stdarg.h>
+#include <unistd.h>
+#include <stdlib.h>
 
 /**
  * struct printer - A new struct type defining a printer.
- * @symbol: A symbol representing a data type.
- * @print: A function pointer to a function that prints
+ * @f: A symbol representing a data type.
+ * @func: A function pointer to a function that prints
  *         a data type corresponding to symbol.
  */
-typedef struct printer
+typedef struct print
 {
-	char *symbol;
-	void (*print)(va_list arg);
+	char f;
+	char *(*func)(va_list);
+} t_print;
 
-} printer_t;
+int _putchar(char c);
+char *_strncpy(char *dest, char *src, int n);
+int _strlen(char *s);
+char *_strcat(char *dest, char *src);
 
-void print_integers(const char *separator, const unsigned int n, ...);
-void print_strings(const char *separator, const unsigned int n, ...);
+char *print_char(va_list ap);
+char *print_string(va_list ap);
 int _printf(const char *format, ...);
+int my_print(char *fmt, va_list ap);
 
 #endif
