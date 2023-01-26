@@ -13,9 +13,9 @@ char *get_specifier_buffer(char c, va_list ap)
 	t_print t[] = {
 	    {'c', print_char},
 	    {'s', print_string},
+	    {'u', print_unsigned_int},
 	    /*// {'i', print_int},
 	    // {'d', print_int},
-	    // {'u', print_unsigned_int},
 	    // {'o', print_octal},
 	    // {'x', print_hex},
 	    // {'X', print_hex},
