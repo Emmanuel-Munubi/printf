@@ -11,13 +11,23 @@
  *
  * Return: string
  */
-void _printf(const char *format, ...)
+int _printf(const char *format, ...)
 {
+	char *buffer = malloc(sizeof(char) * 1024);
+	char *specifier_buffer = malloc(sizeof(char) * 1024);
+	int size, i = 0;
 	va_list ap;
 	va_start(ap, format);
 
-	my_print(format, ap);
-	/*return (my_print(format, ap));*/
-
+	size = my_print(format, ap, buffer, specifier_buffer);
+	
+	while (buffer[i] != '\0') {
+		_putchar(buffer[i]);
+		i++;
+	}
+	
 	va_end(ap);
+	free(buffer);
+	free(specifier_buffer);
+	return size;
 }

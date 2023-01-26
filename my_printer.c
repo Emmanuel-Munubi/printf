@@ -1,64 +1,34 @@
 #include "main.h"
 
 /**
- * @state: 0 normal
- *         1 specifier
+ * @fmt: format string
+ * @ap: va_list for arguments
+ * 
+ * Return: number of characters printed
+ * Description: prints a string with format specifiers
  */
-int my_print(const char *fmt, va_list ap)
+int my_print(const char *fmt, va_list ap, char *buffer, char *specifier_buffer)
 {
-	int i = 0, j;
-	char *buffer = malloc(1024);
 	int state = 0;
-	char *specifier = malloc(1024);
-	int specifier_index = 0;
-	char *specifier_buffer = malloc(1024);
-	int specifier_buffer_index = 0;
-
-	while (fmt[i])
-	{
-		if (state == 0)
-		{
-			if (fmt[i] == '%')
-			{
+	int i = 0;
+	int count = 0;
+	while (fmt[i] != '\0') {
+		if (state == 0) {
+			if (fmt[i] == '%') {
 				state = 1;
-				specifier_index = 0;
+			} else {
+				/*putchar(fmt[i]);*/
+				buffer[count] = fmt[i];
+				count++;
 			}
-			else
-			{
-				// printf("%d", i);
-				buffer[i] = fmt[i];
-			}
-		}
-		else if (state == 1)
-		{
-			if (fmt[i] == '%')
-			{
-				state = 0;
-				buffer[i] = fmt[i];
-			}
-			else
-			{
-				specifier[specifier_index++] = fmt[i];
-				
-				
-				if (fmt[i])
-				{
-					char *str = get_specifier_buffer(fmt[i], ap);
-					_strncpy(specifier_buffer, str, 1024);
-					
-					buffer = _strcat(buffer, specifier_buffer);
-					printf("%s\n", buffer);
-					printf("%d\n%d\n", i, _strlen(buffer));
-					state = 0;
-				}
-			}
+		} else if (state == 1) {
+			specifier_buffer = get_specifier_buffer(fmt[i], ap);
+			_strcat(buffer, specifier_buffer);
+			count += _strlen(specifier_buffer);
+			state = 0;
 		}
 		i++;
 	}
-	buffer[i] = '\0';
-
-	free(buffer);
-	free(specifier);
-	free(specifier_buffer);
-	return (_strlen(buffer));
+	buffer[count] = '\0';
+	return count;
 }

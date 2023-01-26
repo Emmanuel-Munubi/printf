@@ -31,6 +31,7 @@ char *_strcat(char *dest, char *src);
 char *print_char(va_list ap);
 char *print_string(va_list ap);
 int _printf(const char *format, ...);
-int my_print(char *fmt, va_list ap);
+int my_print(const char *fmt, va_list ap, char *buffer, char *specifier_buffer);
+char *get_specifier_buffer(char c, va_list ap);
 
 #endif

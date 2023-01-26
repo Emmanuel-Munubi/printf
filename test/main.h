@@ -10,7 +10,6 @@
 #include <stdarg.h>
 #include <unistd.h>
 #include <stdlib.h>
-#include <stdio.h>
 
 /**
  * struct printer - A new struct type defining a printer.
@@ -31,8 +30,8 @@ char *_strcat(char *dest, char *src);
 
 char *print_char(va_list ap);
 char *print_string(va_list ap);
-void _printf(const char *format, ...);
-void my_print(const char *fmt, va_list ap);
+int _printf(const char *format, ...);
+int my_print(const char *fmt, va_list ap, char *buffer, char *specifier_buffer);
 char *get_specifier_buffer(char c, va_list ap);
 
 #endif
