@@ -14,12 +14,12 @@
 int _printf(const char *format, ...)
 {
 	char *buffer = malloc(sizeof(char) * 1024);
-	char *specifier_buffer = malloc(sizeof(char) * 1024);
+	char *specifier_buff = malloc(sizeof(char) * 1024);
 	int size, i = 0;
 	va_list ap;
 	va_start(ap, format);
 
-	size = my_print(format, ap, buffer, specifier_buffer);
+	size = my_print(format, ap, buffer, specifier_buff);
 	
 	while (buffer[i] != '\0') {
 		_putchar(buffer[i]);
@@ -28,6 +28,6 @@ int _printf(const char *format, ...)
 	
 	va_end(ap);
 	free(buffer);
-	free(specifier_buffer);
+	free(specifier_buff);
 	return size;
 }
