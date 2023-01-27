@@ -12,7 +12,7 @@
 #include <stdlib.h>
 
 /**
- * struct printer - A new struct type defining a printer.
+ * struct print - A new struct type defining a printer.
  * @f: A symbol representing a data type.
  * @func: A function pointer to a function that prints
  *         a data type corresponding to symbol.
@@ -32,6 +32,14 @@ char *print_char(va_list ap);
 char *print_string(va_list ap);
 char *print_unsigned_int(va_list ap);
 char *print_int(va_list ap);
+char *print_binary(va_list ap);
+char *print_octal(va_list ap);
+char *print_hex(va_list ap);
+char *print_HEX(va_list ap);
+char *print_rot(va_list ap);
+char *print_rev(va_list ap);
+char *print_big_s(va_list ap);
+char *print_pointer(va_list ap);
 
 int _printf(const char *format, ...);
 int my_print(const char *fmt, va_list ap, char *buffer, char *specifier_buff);
