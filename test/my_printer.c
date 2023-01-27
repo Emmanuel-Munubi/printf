@@ -24,16 +24,23 @@ int my_print(const char *fmt, va_list ap, char *buffer, char *specifier_buff)
 				state = 1;
 			} else
 			{
-				/*putchar(fmt[i]);*/
 				buffer[count] = fmt[i];
 				count++;
 			}
 		} else if (state == 1)
 		{
-			specifier_buff = get_specifier_buff(fmt[i], ap);
-			_strcat(buffer, specifier_buff);
-			count += _strlen(specifier_buff);
-			state = 0;
+			if (fmt[i] == '%')
+			{
+				buffer[count] = '%';
+				count++;
+				state = 0;
+			} else
+			{
+				specifier_buff = get_specifier_buff(fmt[i], ap);
+				_strcat(buffer, specifier_buff);
+				count += _strlen(specifier_buff);
+				state = 0;
+			}
 		}
 		i++;
 	}

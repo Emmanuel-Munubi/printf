@@ -23,8 +23,7 @@ char *get_specifier_buff(char c, va_list ap)
 	    {'b', print_binary},
 	    {'S', print_big_s},
 	    {'p', print_pointer},
-	    {'r', print_rev},
-	    {'R', print_rot},
+	    {'r', print_rot},
 	    {'\0', NULL}
 	};
 	for (i = 0; t[i].f; i++)

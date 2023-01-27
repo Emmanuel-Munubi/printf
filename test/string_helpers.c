@@ -57,3 +57,65 @@ char *_strcat(char *dest, char *src)
 		dest[dest_len++] = src[index];
 	return (dest);
 }
+
+/**
+ * _strrev - reverses a string
+ * @str: string to reverse
+ * Return: reversed string
+ */
+char *_strrev(char *str)
+{
+        int i, j;
+        char temp;
+
+        for (i = 0, j = _strlen(str) - 1; i < j; i++, j--)
+        {
+                temp = str[i];
+                str[i] = str[j];
+                str[j] = temp;
+        }
+
+        return (str);
+}
+
+/**
+ * _itoa - converts an integer to a string
+ * @num: number to convert
+ * @str: string to store the number
+ * @base: base of the number
+ * Return: string of the number
+ */
+char *_itoa(int num, char *str, int base)
+{
+        int i = 0, isNegative = 0;
+        unsigned int n;
+
+        if (num == 0)
+        {
+                str[i++] = '0';
+                str[i] = '\0';
+                return (str);
+        }
+
+        if (num < 0 && base == 10)
+        {
+                isNegative = 1;
+                n = num * -1;
+        }
+        else
+                n = num;
+
+        while (n != 0)
+        {
+                int rem = n % base;
+                str[i++] = (rem > 9) ? (rem - 10) + 'a' : rem + '0';
+                n = n / base;
+        }
+
+        if (isNegative)
+                str[i++] = '-';
+
+        str[i] = '\0';
+
+        return (_strrev(str));
+}
