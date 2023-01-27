@@ -1,13 +1,15 @@
 #include "main.h"
 
 /**
- * @fmt: format string
+ * my_print - buffers a formatted string to be printed
+ * @fmt: format string to be parsed
  * @ap: va_list for arguments
- * 
+ * @buffer: buffer to store output
+ * @specifier_buff: buffer to store specifier output
  * Return: number of characters printed
  * Description: prints a string with format specifiers
  */
-int my_print(const char *fmt, va_list ap, char *buffer, char *specifier_buffer)
+int my_print(const char *fmt, va_list ap, char *buffer, char *specifier_buff)
 {
 	int state = 0;
 	int i = 0;
@@ -28,13 +30,14 @@ int my_print(const char *fmt, va_list ap, char *buffer, char *specifier_buffer)
 			}
 		} else if (state == 1)
 		{
-			specifier_buffer = get_specifier_buffer(fmt[i], ap);
-			_strcat(buffer, specifier_buffer);
-			count += _strlen(specifier_buffer);
+			specifier_buff = get_specifier_buff(fmt[i], ap);
+			_strcat(buffer, specifier_buff);
+			count += _strlen(specifier_buff);
 			state = 0;
 		}
 		i++;
 	}
+
 	buffer[count] = '\0';
 	return (count);
 }
