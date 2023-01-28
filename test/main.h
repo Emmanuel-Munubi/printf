@@ -26,6 +26,7 @@ typedef struct print
 int _putchar(char c);
 char *_strncpy(char *dest, char *src, int n);
 int _strlen(char *s);
+
 char *_strcat(char *dest, char *src);
 char *_strrev(char *str);
 char *_itoa(int num, char *str, int base);
